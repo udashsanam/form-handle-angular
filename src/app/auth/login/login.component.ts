@@ -1,4 +1,4 @@
-import {afterRender, Component, DestroyRef, inject, signal, viewChild} from '@angular/core';
+import {afterNextRender, afterRender, Component, DestroyRef, inject, signal, viewChild} from '@angular/core';
 import {FormsModule, NgForm} from "@angular/forms";
 import {debounce, debounceTime} from "rxjs";
 
@@ -15,7 +15,14 @@ export class LoginComponent {
   private form  = viewChild.required<NgForm>('form');
   destroyRef = inject(DestroyRef);
   constructor() {
-    afterRender(() => {
+    afterNextRender(() => {
+      const savedForm = window.localStorage.getItem('user-email');
+      if(savedForm){
+        const loadedFormDate = JSON.parse(savedForm);
+        const savedEmail = loadedFormDate.email;
+
+        setTimeout(()=> this.form().controls['email'].setValue(savedEmail), 1 );
+      }
       const  subscription = this.form().valueChanges?.pipe(debounceTime(500)).subscribe({
         next: (value) => {
 
