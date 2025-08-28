@@ -11,17 +11,15 @@ import {FormsModule, NgForm} from "@angular/forms";
   ]
 })
 export class LoginComponent {
-  isValid = signal(true);
   onsubmit(formData: NgForm) {
     if(formData.form.invalid){
-      this.isValid.set(false)
       return;
     }
-    this.isValid.set(true);
 
     console.log(formData.form.value.email);
     console.log(formData.form.value.password);
     console.log(formData.form);
+    formData.form.reset();
 
   }
 }
