@@ -14,4 +14,10 @@
 
     <button class="button">Login</button>
   </div>
+  @if (!isValid()) {
+    <p class="control-error">
+      Invalid values please check your input
+    </p>
+  }
+
 </form>

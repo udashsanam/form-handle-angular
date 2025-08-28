@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {FormsModule, NgForm} from "@angular/forms";
 
 @Component({
@@ -11,10 +11,17 @@ import {FormsModule, NgForm} from "@angular/forms";
   ]
 })
 export class LoginComponent {
-
+  isValid = signal(true);
   onsubmit(formData: NgForm) {
+    if(formData.form.invalid){
+      this.isValid.set(false)
+      return;
+    }
+    this.isValid.set(true);
+
     console.log(formData.form.value.email);
     console.log(formData.form.value.password);
+    console.log(formData.form);
 
   }
 }
