@@ -14,4 +14,10 @@
 
     <button class="button">Login</button>
   </div>
+  @if (emailIsInvalid) {
+    <p class="control-error"> Email is Invalid </p>
+  }
+  @if (passwordIsInvalid) {
+    <p class="control-error"> Password is invalid </p>
+  }
 </form>

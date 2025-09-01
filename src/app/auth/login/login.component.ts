@@ -26,4 +26,20 @@ export class LoginComponent {
     console.log(this.form.controls.password.value)
   }
 
+  get emailIsInvalid(){
+    return (
+      this.form.controls.email.invalid &&
+      this.form.controls.email.touched &&
+      this.form.controls.email.dirty
+    )
+  }
+
+  get passwordIsInvalid(){
+    return (
+      this.form.controls.password.invalid &&
+      this.form.controls.password.touched &&
+      this.form.controls.password.dirty
+    )
+  }
+
 }
