@@ -45,8 +45,10 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
     const formValue = window.localStorage.getItem('login-form');
     if(formValue){
-      const value = JSON.parse(formValue);
-      this.form.controls.email.setValue(value.email);
+      const savedForm = JSON.parse(formValue);
+      this.form.patchValue({
+        email: savedForm.email
+      })
     }
     const subscription = this.form.valueChanges.pipe(debounceTime(500)).subscribe({
       next: value => {
