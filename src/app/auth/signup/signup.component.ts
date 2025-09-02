@@ -29,4 +29,8 @@ export class SignupComponent {
     return (this.form.controls.password.invalid && this.form.controls.password.dirty
     && this.form.controls.password.touched);
   }
+
+  onReset() {
+    this.form.reset();
+  }
 }
