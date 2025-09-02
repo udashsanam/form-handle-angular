@@ -57,8 +57,11 @@ export class SignupComponent {
   })
 
   onSubmit() {
-    console.log(this.form);
-    console.log(this.form.controls.email.value);
+
+    if(this.form.invalid){
+      console.log("INVALID FORM");
+      return;
+    }
   }
 
 
