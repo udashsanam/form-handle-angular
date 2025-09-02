@@ -15,11 +15,13 @@ export class SignupComponent {
     email : new FormControl('', {
       validators: [Validators.email, Validators.required]
     }),
-    password: new FormControl('', {
-      validators: [Validators.required, Validators.min(6)]
-    }),
-    confirmPassword : new FormControl('', {
-      validators: [Validators.required, Validators.min(6)]
+    passwords: new FormGroup({
+      password: new FormControl('', {
+        validators: [Validators.required, Validators.min(6)]
+      }),
+      confirmPassword : new FormControl('', {
+        validators: [Validators.required, Validators.min(6)]
+      })
     }),
     firstName: new FormControl('', {
       validators: [Validators.required]
@@ -27,17 +29,19 @@ export class SignupComponent {
     lastName: new FormControl('', {
       validators: [Validators.required]
     }),
-    street: new FormControl('', {
-      validators: [Validators.required]
-    }),
-    number: new FormControl('', {
-      validators: [Validators.required]
-    }),
-    postalCode: new FormControl('', {
-      validators: [Validators.required]
-    }),
-    city: new FormControl('', {
-      validators: [Validators.required]
+    address: new FormGroup({
+      street: new FormControl('', {
+        validators: [Validators.required]
+      }),
+      number: new FormControl('', {
+        validators: [Validators.required]
+      }),
+      postalCode: new FormControl('', {
+        validators: [Validators.required]
+      }),
+      city: new FormControl('', {
+        validators: [Validators.required]
+      }),
     }),
     role: new FormControl<'student' | 'teacher' |'employee' | 'founder' | 'other'>('student',{
       validators: [Validators.required]
@@ -50,12 +54,8 @@ export class SignupComponent {
   onSubmit() {
     console.log(this.form);
     console.log(this.form.controls.email.value);
-    console.log(this.form.controls.password.value)
   }
-  get passwordIsInvalid(){
-    return (this.form.controls.password.invalid && this.form.controls.password.dirty
-    && this.form.controls.password.touched);
-  }
+
 
   onReset() {
     this.form.reset();
